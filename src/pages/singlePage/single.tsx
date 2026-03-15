@@ -6,8 +6,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import handshake from "../../assets/handshake.png";
 import sirenImg from "../../assets/siren.png";
 import hearts from "../../assets/hearts.png";
-import like from "../../assets/like.png"
-import unlike from "../../assets/unlike.png"
+import like from "../../assets/like.png";
+import unlike from "../../assets/unlike.png";
 import { Book } from "../../types/singleType";
 import { multiImageBook } from "../../mockData/single";
 import {
@@ -22,12 +22,12 @@ const reasonList = ["욕설", "비방", "광고", "도배", "부적절한_내용
 const Single: React.FC = () => {
   const [book, setBook] = useState<Book | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isLiked,setIsLiked ] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   // 신고 모달 관련 상태
   const [openReportModal, setOpenReportModal] = useState(false);
   const [selectedReason, setSelectedReason] = useState<string>("");
-  const [likeCount,setLikeCount] = useState(0);
+  const [likeCount, setLikeCount] = useState(0);
 
   const { postId } = useParams<{ postId: string }>();
   const navigate = useNavigate();
@@ -164,7 +164,9 @@ const Single: React.FC = () => {
           <div className="seller-info">
             <img
               className="seller-img"
-              src={"https://via.placeholder.com/150"}
+              src={
+                "https://picsum.photos/200/300?random=9s://via.placeholder.com/150"
+              }
               alt="판매자"
             />
             <div>{book.sellerName ?? "이름 없음"}</div>

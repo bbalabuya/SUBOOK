@@ -184,5 +184,3 @@ export const chatExampleMessages: ChatMessage[] = [
     isRead: false,
   },
 ];
-
-

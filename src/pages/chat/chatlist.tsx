@@ -62,7 +62,7 @@ const Chatlist = () => {
               <div className="chatlist-lastMessage">{room.lastMessage}</div>
             </div>
             <div className="chatlist-lastMessageTime">
-              {getTimeAgo(room.lastTimestamp)}
+              {getTimeAgo(room.lastMessageTime)}
             </div>
           </Link>
         ))}

@@ -40,7 +40,6 @@
   padding: 20px;
   width: 1050px;
   height: 100%;
-  border: 1px solid black;
 }
 
 /* 개별 책 카드 */
@@ -51,7 +50,9 @@
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .like-book-card:hover {

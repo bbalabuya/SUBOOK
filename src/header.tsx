@@ -5,6 +5,7 @@ import axios from "axios";
 import arrowImg from "./assets/arrow.png";
 import profileImg from "./assets/basic_profile.png";
 import readingGlass from "./assets/reading_glass.png";
+import subookLogo from "./assets/subookLogo.png";
 
 // =======================
 // 🔹 스타일 정의
@@ -14,13 +15,13 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 50px 30px;
-  width:100%;
+  width: 100%;
   height: 70px;
   background-color: #f8f8f8;
   border-bottom: 3px solid #b516ff;
   position: sticky;
   box-sizing: border-box;
-  
+
   top: 0;
   z-index: 100;
 `;
@@ -50,8 +51,9 @@ const Nav = styled.nav`
 
 const SearchBox = styled.div`
   display: flex;
+  flex: 1;
+  margin: 0 70px;
   align-items: center;
-  width: 750px;
   background-color: white;
   border: 1px solid #b516ff;
   border-radius: 999px;
@@ -151,7 +153,7 @@ const Header: React.FC = () => {
       const response = await axios.post(
         `${API_URL}/api/auth/reissue`,
         {},
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       console.log("✅ [Header] 로그인 상태 확인 응답:", response);
@@ -205,7 +207,7 @@ const Header: React.FC = () => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (response.status === 200) {
@@ -227,7 +229,9 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       {/* 로고 클릭 시 홈으로 이동 */}
-      <Logo onClick={() => navigate("/")}>📚 중고책 판매</Logo>
+      <Logo onClick={() => navigate("/")}>
+        <img src={subookLogo} alt="수북로고" style={{ width: "150px" }} />
+      </Logo>
 
       {/* 검색창 */}
       <SearchBox>

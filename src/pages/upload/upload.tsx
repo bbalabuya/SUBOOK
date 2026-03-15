@@ -17,9 +17,13 @@ const Upload = () => {
   const [grade, setGrade] = useState<number>(1);
   const [semester, setSemester] = useState<number>(1);
   const [postImage, setPostImage] = useState<File[]>([]); // 원본 File 객체 저장
-  const [majorList, setMajorList] = useState<{ id: string; name: string }[]>([]);
+  const [majorList, setMajorList] = useState<{ id: string; name: string }[]>(
+    [],
+  );
   const [majorId, setMajorId] = useState("");
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null); // 중앙에 크게 보여줄 이미지 인덱스
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null,
+  ); // 중앙에 크게 보여줄 이미지 인덱스
 
   const navigate = useNavigate();
 
@@ -33,11 +37,15 @@ const Upload = () => {
     setPostImage(newImages);
 
     // 새 이미지가 추가되었고, 현재 선택된 이미지가 없거나(null) 유효하지 않다면 첫 이미지를 선택
-    if (newImages.length > 0 && (selectedImageIndex === null || newImages[selectedImageIndex] === undefined)) {
+    if (
+      newImages.length > 0 &&
+      (selectedImageIndex === null ||
+        newImages[selectedImageIndex] === undefined)
+    ) {
       setSelectedImageIndex(0);
     }
     // 인풋 파일 초기화 (동일 파일 재선택 가능하도록)
-    e.target.value = ''; 
+    e.target.value = "";
   };
 
   /** ❌ 이미지 삭제 */
@@ -46,17 +54,20 @@ const Upload = () => {
       const updatedImages = prev.filter((_, i) => i !== index);
 
       // 삭제 후 선택된 이미지 인덱스 조정 로직
-      if (selectedImageIndex === index) { // 삭제된 이미지가 현재 선택된 이미지인 경우
+      if (selectedImageIndex === index) {
+        // 삭제된 이미지가 현재 선택된 이미지인 경우
         if (updatedImages.length > 0) {
           // 남은 이미지가 있으면 첫 번째 이미지 선택
-          setSelectedImageIndex(0); 
+          setSelectedImageIndex(0);
         } else {
           // 이미지가 없으면 선택 해제
           setSelectedImageIndex(null);
         }
       } else if (selectedImageIndex !== null && selectedImageIndex > index) {
         // 삭제된 이미지보다 뒤에 있는 이미지가 선택되어 있었으면 인덱스 하나 줄이기
-        setSelectedImageIndex(prevIndex => (prevIndex !== null ? prevIndex - 1 : null));
+        setSelectedImageIndex((prevIndex) =>
+          prevIndex !== null ? prevIndex - 1 : null,
+        );
       }
       return updatedImages;
     });
@@ -92,7 +103,7 @@ const Upload = () => {
         formData.append("postImages", file);
       });
       console.log(
-        "✅ [handleSubmit] FormData 준비 완료: postImages로 파일 추가 완료"
+        "✅ [handleSubmit] FormData 준비 완료: postImages로 파일 추가 완료",
       );
 
       const res = await fetch(`${API_URL}/api/posts`, {
@@ -131,9 +142,10 @@ const Upload = () => {
   }, []);
 
   // 이미지 선택 시 중앙에 보여줄 이미지 URL (미리보기)
-  const mainImageUrl = selectedImageIndex !== null && postImage[selectedImageIndex]
-    ? URL.createObjectURL(postImage[selectedImageIndex])
-    : imgUpload; // 선택된 이미지가 없으면 기본 카메라 아이콘
+  const mainImageUrl =
+    selectedImageIndex !== null && postImage[selectedImageIndex]
+      ? URL.createObjectURL(postImage[selectedImageIndex])
+      : imgUpload; // 선택된 이미지가 없으면 기본 카메라 아이콘
 
   return (
     <div className="upload-whole-container">
@@ -142,10 +154,18 @@ const Upload = () => {
         {/* 중앙에 크게 표시되는 이미지 */}
         <div className="main-image-display">
           {selectedImageIndex !== null && postImage[selectedImageIndex] ? (
-            <img src={mainImageUrl} alt="메인 이미지" className="uploaded-main-img" />
+            <img
+              src={mainImageUrl}
+              alt="메인 이미지"
+              className="uploaded-main-img"
+            />
           ) : (
             <div className="empty-main-slot">
-              <img src={imgUpload} alt="이미지 없음" className="upload-icon-large" />
+              <img
+                src={imgUpload}
+                alt="이미지 없음"
+                className="upload-icon-large"
+              />
               <p>최대 5장의 이미지를 등록해주세요</p>
             </div>
           )}
@@ -161,7 +181,7 @@ const Upload = () => {
                 if (postImage[index]) {
                   setSelectedImageIndex(index); // 썸네일 클릭 시 메인 이미지 변경
                 }
-              }} 
+              }}
             >
               {postImage[index] ? (
                 // 이미지가 있는 슬롯 (썸네일)
@@ -187,14 +207,22 @@ const Upload = () => {
                   <input
                     type="file"
                     accept="image/*"
-                    multiple 
+                    multiple
                     style={{ display: "none" }}
                     onChange={handleImageUpload}
                     // 5장이 가득 찼으면 input 비활성화
                     disabled={postImage.length >= MAX_IMAGES}
                   />
-                  {postImage.length < MAX_IMAGES && <img src={imgUpload} alt="카메라" className="upload-thumbnail-icon" />}
-                  {postImage.length >= MAX_IMAGES && <div className="no-upload-slot"></div>}
+                  {postImage.length < MAX_IMAGES && (
+                    <img
+                      src={imgUpload}
+                      alt="카메라"
+                      className="upload-thumbnail-icon"
+                    />
+                  )}
+                  {postImage.length >= MAX_IMAGES && (
+                    <div className="no-upload-slot"></div>
+                  )}
                 </label>
               )}
             </div>

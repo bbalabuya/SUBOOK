@@ -41,7 +41,7 @@ const PUBLIC_APIS = [
   "/api/auth/signup",
   "/api/auth/reissue",
   "/api/posts",
-  "/api/posts/"
+  "/api/posts/",
 ];
 
 // 📡 요청 인터셉터
@@ -71,9 +71,8 @@ api.interceptors.request.use(
   (error: AxiosError) => {
     console.error("❌ [요청 인터셉터] 에러 발생:", error.message);
     return Promise.reject(error);
-  }
+  },
 );
-
 
 // 📡 응답 인터셉터
 api.interceptors.response.use(
@@ -99,6 +98,7 @@ api.interceptors.response.use(
     }
 
     // 🔄 401 → 토큰 재발급 시도
+    /* 서버 중단으로 주석 처리
     if (status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       console.log("🔄 [401] 토큰 재발급 요청 중...");
@@ -143,7 +143,8 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+    */
+  },
 );
 
 export default api;

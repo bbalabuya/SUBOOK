@@ -6,8 +6,14 @@ export const multiImageBook: Book = {
   content:
     "자료구조 수업 때 사용했던 책입니다. 표지에 약간의 사용감이 있지만, 내용은 깔끔합니다. 참고용 프린트물도 함께 드립니다.",
   postPrice: 20000,
-  postImage:
-    "https://via.placeholder.com/600x800?text=Book+Cover",
+
+  postImages: [
+    "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800",
+    "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800",
+    "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
+    "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=800",
+  ],
+
   postName: "자료구조 교재 팝니다",
   PostStatus: "판매중",
   likeCount: 9,

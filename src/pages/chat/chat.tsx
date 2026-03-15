@@ -56,7 +56,7 @@ const Chat = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedImg, setSelectedImg] = useState<string | undefined>(undefined);
 
-  const [myID, setMyID] = useState<string>("");
+  const [myID, setMyID] = useState<string>("me");
   const [opponentID, setOpponentID] = useState<string>("");
   // 🔌 STOMP client 객체를 저장하는 상태 (연결 해제용)
   const [stompClient, setStompClient] = useState<Client | null>(null);
@@ -259,7 +259,7 @@ const Chat = () => {
           // onClick 핸들러 추가 필요 (예: navigate(-1))
         />
         <div className="chat-info">
-          <div className="opponentName">{roomName || "상대방 이름"}</div>
+          <div className="opponentName">{roomName || "황우진"}</div>
           <div className="chat-board-name">{postName || "게시글 제목"}</div>
         </div>
         <img
@@ -311,7 +311,7 @@ const Chat = () => {
                 month: "long",
                 day: "numeric",
                 weekday: "long",
-              }
+              },
             );
 
             const prevDate =
@@ -404,9 +404,7 @@ const Chat = () => {
 
                         {/* ✅ 상대방 메시지일 때 시간 오른쪽에 표시 */}
                         {isLastRead && (
-                          <div className="chat-read-indicator">
-                            👀 여기까지 읽었습니다
-                          </div>
+                          <div className="chat-read-indicator">읽음</div>
                         )}
                       </>
                     )}

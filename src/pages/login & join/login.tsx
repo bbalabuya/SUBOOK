@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
-import reactLogo from "../../assets/react.svg";
+import subookLogo from "../../assets/subookLogo.png";
 import { login } from "../../API/loginAPI";
 
 const Login = () => {
@@ -27,8 +27,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <img className="logo" src={reactLogo} alt="logo" />
-      <div className="title">수북</div>
+      <img className="logo" src={subookLogo} alt="logo" />
 
       <div className="enterbox-container">
         <div className="enterbox-title">학교 이메일</div>

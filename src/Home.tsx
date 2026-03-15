@@ -122,7 +122,7 @@ export default function Home() {
           fetchPage(pageNumber + 1, true);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     io.observe(el);
@@ -221,21 +221,13 @@ export default function Home() {
       {/* 오른쪽 책 목록 */}
       <div className="book-list-container">
         {loading && books.length === 0 ? (
-          <div className="status-text">🔍 검색 중입니다...</div>
+          <div className="status-text">🔍 불러오는 중입니다...</div>
         ) : books.length === 0 ? (
           <div className="status-text">책이 없습니다.</div>
         ) : (
           books.map((book) => (
-            <Link
-              to={`/single/${book.id}`}
-              key={book.id}
-              className="book-card"
-            >
-              <img
-                src={book.postImage}
-                alt="책 사진"
-                className="book-image"
-              />
+            <Link to={`/single/${book.id}`} key={book.id} className="book-card">
+              <img src={book.postImage} alt="책 사진" className="book-image" />
               <div className="book-title">{book.title}</div>
 
               <div className="book-card-footer">
